@@ -5,7 +5,7 @@ import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import 'dotenv/config';
 
-console.log(process.env.MONGODB_USERNAME);
+// console.log(process.env.MONGODB_USERNAME);
 
 @Module({
   imports: [
