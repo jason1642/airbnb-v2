@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { IsStrongPassword } from 'class-validator';
 import { HydratedDocument } from 'mongoose';
 
 export type UserDocument = HydratedDocument<User>;
@@ -12,16 +13,24 @@ export class User {
     required: true,
     unique: true,
     lowercase: true,
-    trime: true,
+    trim: true,
     match: [/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please use a valid email address'],
   })
   email: string;
 
-  @Prop({
-    required: true,
-    maxLength: 35,
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+  @IsStrongPassword({
     minLength: 6,
+    minNumbers: 1,
+    minSymbols: 1,
+    minUppercase: 1,
   })
+  // @Prop({
+  //   required: true,
+  //   trim: true,
+  //   maxLength: 35,
+  //   minLength: 6,
+  // })
   password: string;
 }
 
