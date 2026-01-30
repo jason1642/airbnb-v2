@@ -11,7 +11,6 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
-import { IsStrongPassword } from 'class-validator';
 // import {
 //   createCipheriv,
 //   createDecipheriv,
@@ -49,16 +48,21 @@ export class UsersController {
     // HASH
     const salt = await bcrypt.genSalt();
     // const salt = 10;
-    const password = createUserDto.password;
-    const hash = await bcrypt.hash(password, salt);
-    const isMatch = await bcrypt.compare(password, hash);
+    const passwordDto = createUserDto.password;
+    const hash = await bcrypt.hash(passwordDto, salt);
+    const isMatch = await bcrypt.compare(passwordDto, hash);
     console.log({
       isMatch: isMatch,
-      passwordInput: password,
+      passwordInput: passwordDto,
       hashedPassword: hash,
       salt: salt,
     });
-    return this.usersService.createUser(createUserDto);
+    const { username, email } = createUserDto;
+    return this.usersService.createUser({
+      username: username,
+      password: hash,
+      email: email,
+    });
   }
 
   @Get()

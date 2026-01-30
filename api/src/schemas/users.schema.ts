@@ -25,13 +25,14 @@ export class User {
     minSymbols: 1,
     minUppercase: 1,
   })
+  @Prop()
+  password: string;
   // @Prop({
   //   required: true,
   //   trim: true,
   //   maxLength: 35,
   //   minLength: 6,
   // })
-  password: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
