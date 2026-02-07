@@ -6,4 +6,4 @@ const api = axios.create({
 });
 
 export const getManyByQuery = async (query: any) => 
-    await api.get('/')
+    await api.get('/listings')

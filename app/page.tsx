@@ -1,7 +1,18 @@
 'use client'
 import Image from "next/image";
+import { useEffect } from "react";
 import SingleLineList from '../components/home/SingleLineList';
+import { getManyByQuery } from "@/services/api-helpers";
+
+
+
 export default function Home() {
+    useEffect(() =>{
+    getManyByQuery({}).then(res=>{
+      console.log(res);
+    })
+
+  }, [])
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
 
