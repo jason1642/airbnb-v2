@@ -2,7 +2,7 @@
 import * as mongoose from 'mongoose';
 
 // export type ListingDocument = HydratedDocument<Listing>;
-export const ListingSchema: mongoose.Schema = new mongoose.Schema({
+export const Listing: mongoose.Schema = new mongoose.Schema({
   _id: String,
   access: String,
   accommodates: Number,
