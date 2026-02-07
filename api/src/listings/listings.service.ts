@@ -1,23 +1,25 @@
 import { Injectable, Inject } from '@nestjs/common';
 // import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Listing } from 'src/schemas/listings.schema';
+import { Listing } from './interfaces/listing.interface';
+// import { ListingSchema } from 'src/schemas/listings.schema';
 import { CreateListingDto } from './dto/CreateListing.dto';
 
 @Injectable()
 export class ListingsService {
-  constructor(@Inject('Listing') private listingModel: Model<typeof Listing>) {}
+  constructor(
+    @Inject('LISTING_MODEL')
+    private readonly listingModel: Model<Listing>,
+  ) {}
 
-  async createListing(
-    createListingDto: CreateListingDto,
-  ): Promise<typeof Listing> {
-    const newListing = new this.listingModel(createListingDto);
+  async createListing(createListingDto: CreateListingDto): Promise<Listing> {
+    const newListing: Listing = new this.listingModel(createListingDto);
     console.log(newListing);
     return newListing.save();
   }
 
-  findAll() {
-    return `This action returns all listings`;
+  findAll(): Promise<Listing[]> {
+    return this.listingModel.find().limit(20).exec();
   }
 
   findOne(id: number) {

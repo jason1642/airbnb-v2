@@ -1,9 +1,10 @@
-import mongoose from 'mongoose';
-export class CreateListingDto {
-  readonly _id: string;
-  readonly access: string;
-  readonly accommodates: number;
-  readonly address: {
+import * as mongoose from 'mongoose';
+
+export interface Listing extends mongoose.Document {
+  _id: mongoose.Types.ObjectId;
+  access: string;
+  accommodates: number;
+  address: {
     country: string;
     country_code: string;
     government_area: string;
@@ -15,8 +16,8 @@ export class CreateListingDto {
     street: string;
     suburb: string;
   };
-  readonly amenities: [string];
-  readonly availability: {
+  amenities: [string];
+  availability: {
     type: {
       availability_30: number;
       availability_60: number;
@@ -24,17 +25,17 @@ export class CreateListingDto {
       availability_365: number;
     };
   };
-  readonly bathrooms: mongoose.Types.Decimal128;
-  readonly bed_type: string;
-  readonly bedrooms: number;
-  readonly beds: number;
-  readonly cancellation_policy: string;
-  readonly cleaning_fee: mongoose.Types.Decimal128;
-  readonly description: string;
-  readonly extra_people: mongoose.Types.Decimal128;
-  readonly first_review: Date;
-  readonly guests_included: mongoose.Types.Decimal128;
-  readonly host: {
+  bathrooms: mongoose.Types.Decimal128;
+  bed_type: string;
+  bedrooms: number;
+  beds: number;
+  cancellation_policy: string;
+  cleaning_fee: mongoose.Types.Decimal128;
+  description: string;
+  extra_people: mongoose.Types.Decimal128;
+  first_review: Date;
+  guests_included: mongoose.Types.Decimal128;
+  host: {
     host_about: string;
     host_has_profile_pic: boolean;
     host_id: string;
@@ -52,27 +53,27 @@ export class CreateListingDto {
     host_url: string;
     host_verifications: [string];
   };
-  readonly house_rules: string;
-  readonly images: {
+  house_rules: string;
+  images: {
     medium_url: string;
     picture_url: string;
     thumbnail_url: string;
     xl_picture_url: string;
   };
-  readonly interaction: string;
-  readonly last_review: Date;
-  readonly last_scraped: Date;
-  readonly listing_url: string;
-  readonly maximum_nights: string;
-  readonly minimum_nights: string;
-  readonly monthly_price: { type: mongoose.Types.Decimal128; required: false };
-  readonly name: string;
-  readonly neighborhood_overview: string;
-  readonly notes: string;
-  readonly number_of_reviews: number;
-  readonly price: mongoose.Types.Decimal128;
-  readonly property_type: string;
-  readonly review_scores: {
+  interaction: string;
+  last_review: Date;
+  last_scraped: Date;
+  listing_url: string;
+  maximum_nights: string;
+  minimum_nights: string;
+  monthly_price: { type: mongoose.Types.Decimal128; required: false };
+  name: string;
+  neighborhood_overview: string;
+  notes: string;
+  number_of_reviews: number;
+  price: mongoose.Types.Decimal128;
+  property_type: string;
+  review_scores: {
     review_scores_accuracy: { type: number; required: false };
     review_scores_checkin: { type: number; required: false };
     review_scores_cleanliness: { type: number; required: false };
@@ -81,7 +82,7 @@ export class CreateListingDto {
     review_scores_rating: { type: number; required: false };
     review_scores_value: { type: number; required: false };
   };
-  readonly reviews: [
+  reviews: [
     {
       _id: string;
       comments: string;
@@ -91,11 +92,11 @@ export class CreateListingDto {
       reviewer_name: string;
     },
   ];
-  readonly reviews_per_month: number;
-  readonly room_type: string;
-  readonly security_deposit: mongoose.Types.Decimal128;
-  readonly space: string;
-  readonly summary: string;
-  readonly transit: string;
-  readonly weekly_price: { type: mongoose.Types.Decimal128; required: false };
+  reviews_per_month: number;
+  room_type: string;
+  security_deposit: mongoose.Types.Decimal128;
+  space: string;
+  summary: string;
+  transit: string;
+  weekly_price: { type: mongoose.Types.Decimal128; required: false };
 }

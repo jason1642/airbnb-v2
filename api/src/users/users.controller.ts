@@ -11,6 +11,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/CreateUser.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
+// import { User } from './interfaces/user.interface';
 // import {
 //   createCipheriv,
 //   createDecipheriv,
