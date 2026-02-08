@@ -11,5 +11,6 @@ export const getMany = async () =>
 
 // pass a name of a market (e.g. "New York") and return a number of listings in that market
 export const queryMarkets = async({name, limit}: {name: string, limit: number}) =>{
-    return await api.get(`/listings/query?name=${name} &limit=${limit}`);
+    console.log(name, limit)
+    return await api.get(`/listings?name=${name}&limit=${limit}`);
 }
