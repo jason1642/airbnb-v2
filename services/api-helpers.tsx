@@ -5,5 +5,11 @@ const api = axios.create({
     baseURL: baseUrl,
 });
 
-export const getManyByQuery = async (query: any) => 
+export const getMany = async () => 
     await api.get('/listings')
+
+
+// pass a name of a market (e.g. "New York") and return a number of listings in that market
+export const queryMarkets = async({name, limit}: {name: string, limit: number}) =>{
+
+}

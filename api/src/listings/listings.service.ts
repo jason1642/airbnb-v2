@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Listing } from './interfaces/listing.interface';
 // import { ListingSchema } from 'src/schemas/listings.schema';
 import { CreateListingDto } from './dto/CreateListing.dto';
+// import { QueryMarketDto } from './dto/QueryMarket.dto';
 
 @Injectable()
 export class ListingsService {
@@ -12,10 +13,21 @@ export class ListingsService {
     private readonly listingModel: Model<Listing>,
   ) {}
 
-  async createListing(createListingDto: CreateListingDto): Promise<Listing> {
+  async createListing(createListingDto: CreateListingDto) {
     const newListing: Listing = new this.listingModel(createListingDto);
     console.log(newListing);
     return newListing.save();
+  }
+
+  async queryMarket(name: string, limit: number): Promise<Listing[]> {
+    const query: any = {};
+    if (name) {
+      query['address.market'] = name;
+    }
+    if (limit) {
+      console.log(limit);
+    }
+    return this.listingModel.find(query).limit(limit).exec();
   }
 
   findAll(): Promise<Listing[]> {

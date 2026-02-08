@@ -55,14 +55,20 @@ const products = [
       },
   ]
   
+interface PropTypes  {
+   data: {name: string, 
+    image: string,
+    description: string,
+}
+}
 
   // Create props to be able to reuse this component for different product categories
-  export default function Example() {
+  export default function SingleLineList({data} : PropTypes) {
     return (
       <div className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900">Places to stay in {data.name}</h2>
             <a className="text-black">See more</a>
           </div>
   
