@@ -20,7 +20,7 @@ export class ListingsService {
   }
 
   async findAll(queryMarketData?: QueryMarketDto) {
-    const query: any = {};
+    const query = {};
 
     if (queryMarketData?.name) {
       query['address.market'] = queryMarketData.name;
