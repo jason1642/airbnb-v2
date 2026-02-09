@@ -38,7 +38,11 @@ export class ListingsService {
   //   }
 
   findOne(id: number) {
-    return `This action returns a #${id} listing`;
+    const query = {};
+    if (id) {
+      query['_id'] = id;
+    }
+    return this.listingModel.findOne(query).exec();
   }
 
   update(id: number, updateListingDto: any) {

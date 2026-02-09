@@ -1,6 +1,6 @@
 'use client'
 // import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment} from "react";
 import SingleLineList from '../components/home/SingleLineList';
 import { getMany, queryMarkets } from "@/services/api-helpers";
 import ListingTypes from "@/types/listing";
@@ -13,7 +13,7 @@ interface AggregatedMarketData {
 // query markets and pass them as props to the SingleLineList component
 const markets = ['New York', 'Oahu', 'Montreal', 'Porto', 'Sydney', 'Barcelona'];
 export default function Home() {
-  const [marketData, setMarketData ] = useState<{market: string, listingsArray: [ListingTypes]}[]>([]);
+  const [marketData, setMarketData ] = useState<AggregatedMarketData[]>([]);
     useEffect(() =>{
       markets.forEach(market => {
         queryMarkets({name: market, limit: 6}).then(res =>{
@@ -32,10 +32,10 @@ export default function Home() {
       <main className="flex min-h-screen w-full max-w-7xl flex-col items-center bg-white dark:bg-black sm:items-start">
         {
           marketData && 
-          marketData.map((item) => 
-            <div key={item.market}>
-              {SingleLineList(item)}
-            </div>
+          marketData.map((item, index) => 
+            <Fragment key={index}>
+              <SingleLineList marketData={item} />
+            </Fragment>
            )
         }
       </main>
