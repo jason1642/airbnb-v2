@@ -5,9 +5,12 @@ export default function Page() {
     const params = useParams();
     
     useEffect(() => {
-        console.log(params.id[0])
+        if (params.id){
+            console.log(params.id[0])
+        }
+      
     }, [])
     return (
-        <div>Single room page based on :id</div>
+        <div>Single room page based on {params.id}</div>
     );
 }
